@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
     
     @Query("SELECT new com.example.Tienda_Prueba_Tecnica.DTOS.ResponseProduct(sell.products.name) FROM SellsEntity AS sell WHERE sell.products.category.name_category LIKE CONCAT('%', :name_category, '%') AND FUNCTION('YEAR', sell.date) =2019")
-    List<ResponseProduct> returnNameCategory(@Param("name_category") String category);
+    List<ResponseProduct> returnProductsThanSellings2019(@Param("name_category") String category);
     
     @Query("SELECT new com.example.Tienda_Prueba_Tecnica.DTOS.ResponseCategory(c.name_category) FROM CategoryEntity AS c")
     List<ResponseCategory> returnAllCategory();

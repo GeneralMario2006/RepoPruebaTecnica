@@ -22,8 +22,8 @@ public class ServiceCategory {
     CategoryRepository repo;
     
     
-    public List<ResponseProduct>returnCategory(String name) {
-        List<ResponseProduct> response= repo.returnNameCategory(name);
+    public List<ResponseProduct>returnProductsThanSellings2019(String name) {
+        List<ResponseProduct> response= repo.returnProductsThanSellings2019(name);
         if (response.isEmpty()) {
             return response;
         }        

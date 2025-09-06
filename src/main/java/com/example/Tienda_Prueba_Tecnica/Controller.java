@@ -29,11 +29,11 @@ public class Controller {
     @PostMapping("/name")
     public ResponseEntity<?>ReturnCategoryName(@RequestBody RequestCategory category) {
         String categoryName= category.getName();
-        return ResponseEntity.ok(sc.returnCategory(categoryName));
+        return ResponseEntity.ok(sc.returnProductsThanSellings2019(categoryName));
     }
     
     @GetMapping("/all")
-    public ResponseEntity<?>ReturnCategorys() {
+    public ResponseEntity<?>ReturnAllCategorys() {
             return ResponseEntity.ok(sc.returnAllCategory());
     }
 }
