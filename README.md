@@ -58,7 +58,11 @@ Por defecto, no muestra registros hasta que se seleccione una categoría.
 
 6. Estructura del repositorio
 src/ → Código fuente de Spring Boot.
+src/main/resources/PruebaTecnica/prueba-tecnica.htm -> Frontend.
 
-database.sql → Creación de tablas y datos de prueba.
+src/main/resource/InformacionBD/Prueba-Tecnica-SQL.sql → Creación de tablas y datos de prueba.
+En esta ruta también se encuentra toda la información de la base de datos.
+
+src/main/resource/application.properties -> Archivo a modificar para el usuario y contraseña de la base de datos.
 
 README.md → Esta documentación.
