@@ -45,7 +45,7 @@ y luego :
 La aplicación correrá en http://localhost:8080 (por defecto).
 
 5. Uso de la aplicación
-La aplicación tiene una página web que:
+La aplicación tiene una página web que (se encuentra en main/resources/PruebaTecnica/prueba-tecnica.html :
 Debe ser ejecutada desde visual studio code con OpenLiveServer
 
 Lista los nombres de productos vendidos.
