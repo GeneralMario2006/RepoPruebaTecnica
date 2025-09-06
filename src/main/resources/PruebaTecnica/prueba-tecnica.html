@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta Categorías</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #2f3640;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #353b48;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dcdde1;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #273c75;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #192a56;
+    }
+
+    h3 {
+      margin-top: 20px;
+      color: #2f3640;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+
+    li {
+      background: #f1f2f6;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #2f3640;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Consultar Categorías</h2>
+    <label for="categoria">Selecciona una categoría:</label>
+    <select id="categoria">
+      <option value="">-- Cargando categorías... --</option>
+    </select>
+    <button id="btnConsultar">Consultar</button>
+
+    <h3>Resultados:</h3>
+    <ul id="resultados"></ul>
+  </div>
+
+  <script>
+    // Al cargar la página, obtenemos las categorías
+    window.onload = () => {
+      fetch('http://localhost:8080/Category/all') // <-- aquí necesitas un endpoint que devuelva TODAS las categorías
+        .then(res => res.json())
+        .then(categorias => {
+          const select = document.getElementById('categoria');
+          select.innerHTML = '<option value="">-- Selecciona --</option>'; // limpiar y poner opción inicial
+          categorias.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.name_category || cat.name; // depende de cómo lo devuelva tu backend
+            option.textContent = cat.name_category || cat.name;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => console.error('Error al cargar categorías:', err));
+    };
+
+    // Cuando se consulta
+    document.getElementById('btnConsultar').addEventListener('click', () => {
+      const nombreCategoria = document.getElementById('categoria').value;
+
+      if (!nombreCategoria) {
+        alert("Selecciona una categoría");
+        return;
+      }
+
+      fetch('http://localhost:8080/Category/name', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: nombreCategoria })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const lista = document.getElementById('resultados');
+        lista.innerHTML = ''; // limpiar lista
+
+        if (Array.isArray(data) && data.length > 0) {
+          data.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.nameProduct || item;
+            lista.appendChild(li);
+          });
+        } else {
+          const li = document.createElement('li');
+          li.textContent = "No se encontraron resultados";
+          lista.appendChild(li);
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    });
+  </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
  */
 package com.example.Tienda_Prueba_Tecnica.Service;
 
+import com.example.Tienda_Prueba_Tecnica.DTOS.ResponseCategory;
 import com.example.Tienda_Prueba_Tecnica.DTOS.ResponseProduct;
 import com.example.Tienda_Prueba_Tecnica.Repositorys.CategoryRepository;
 import java.util.List;
@@ -27,5 +28,9 @@ public class ServiceCategory {
             return response;
         }        
         return response;
+    }
+    
+    public List<ResponseCategory>returnAllCategory(){
+        return repo.returnAllCategory();
     }
 }
