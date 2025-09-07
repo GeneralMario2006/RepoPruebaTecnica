@@ -15,8 +15,9 @@
 
 **Windows:**
 Nota: la ruta de la variable de entorno es de donde se instalo el jdk de java
-JAVA_HOME = C:\Ruta\al\jdk
-PATH = %JAVA_HOME%\bin;%PATH%
+nombre de variable: JAVA_HOME 
+PATH: C:\Ruta\al\jdk
+PATH = C:\Ruta\al\jdk\bin
 
 Verificar la instalación:
 
@@ -24,7 +25,7 @@ Copiar código
 java -version
 
 3. Configuración de la base de datos
-Crear la base de datos ejecutando el archivo database.sql incluido en el repositorio.
+Crear la base de datos ejecutando el archivo sql incluido en el repositorio.
 
 Actualizar el archivo application.properties con los datos de conexión de tu base:
 
